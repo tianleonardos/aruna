@@ -1,0 +1,11 @@
+{
+    "active_version": "1.0",
+    "models": [
+        {
+            "version": "1.0",
+            "filename": "aruna_model_v1.0.joblib",
+            "status": "active",
+            "registered_at": "2026-11-20T04:21:15"
+        }
+    ]
+}
