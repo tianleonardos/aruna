@@ -73,3 +73,13 @@ print(recommendation["disclaimer"])
 print("\n" + "=" * 50)
 print("ARUNA PIPELINE BERHASIL DIJALANKAN")
 print("=" * 50)
+
+from src.pipeline import assess_student
+
+result = assess_student(sample_answers)
+
+print("\n=== FULL ARUNA PIPELINE ===")
+print("Dimension scores:", result["dimension_scores"])
+print("Overall profile:", result["overall_profile"])
+print("Pattern profile:", result["pattern_profile"])
+print("Recommendation:", result["recommendation"])
