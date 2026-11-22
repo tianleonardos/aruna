@@ -38,21 +38,55 @@ DATA_REFERENCE_DIR.mkdir(
 )
 
 
+from src.theme import apply_theme, get_vector, get_logo_base64
+
+# Cek autentikasi dan peran admin
+current_user = st.session_state.get("user")
+is_admin = bool(current_user and current_user.get("role") == "admin")
+
+# Atur visibilitas sidebar: hanya admin yang memiliki sidebar
+apply_theme(hide_sidebar=not is_admin)
+
+if not is_admin:
+    st.warning("⚠️ Akses Terbatas: Halaman ini hanya dapat diakses oleh Administrator & Peneliti.")
+    st.info("Silakan login menggunakan akun Administrator di Beranda Utama.")
+    st.page_link("pages/0_Home.py", label="⬅️ Kembali ke Beranda Utama", icon="🌱")
+    st.stop()
+
+# Tombol navigasi kembali ke Admin Dashboard
+st.page_link("pages/1_Admin_Dashboard.py", label="⬅️ Kembali ke Admin Dashboard", icon="🏠")
+
 # =========================================================
 # 2. PAGE CONFIGURATION
 # =========================================================
 
-st.set_page_config(
-    page_title="Dataset Management | Aruna",
-    page_icon="📁",
-    layout="wide",
-)
+logo_data_uri = get_logo_base64()
+h_col1, h_col2 = st.columns([3, 1], vertical_alignment="center")
 
-st.title("Dataset Management")
-st.caption(
-    "Kelola, periksa, dan simpan dataset referensi "
-    "untuk pengembangan model Aruna."
-)
+with h_col1:
+    st.markdown(
+        f"""
+        <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 8px;">
+            <img src="{logo_data_uri}" alt="Aruna Logo" style="width: 44px; height: 44px; object-fit: contain;" />
+            <div>
+                <span class="aruna-badge">Manajemen Data</span>
+                <h1 class="aruna-brand-title" style="margin: 0; font-size: 2.1rem;">Aruna</h1>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+    st.title("Dataset Management")
+    st.caption(
+        "Kelola, periksa kelengkapan, validasi format MHC-SF, "
+        "dan simpan dataset untuk eksperimen model Aruna."
+    )
+
+with h_col2:
+    st.markdown(
+        f'<div style="max-width: 120px; margin: auto;">{get_vector("research_matrix")}</div>',
+        unsafe_allow_html=True,
+    )
 
 
 # =========================================================

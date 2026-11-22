@@ -1,11 +1,20 @@
 {
-    "active_version": "1.0",
+    "active_version": "1.1",
     "models": [
         {
             "version": "1.0",
             "filename": "aruna_model_v1.0.joblib",
-            "status": "active",
+            "status": "archived",
             "registered_at": "2026-11-20T04:21:15"
+        },
+        {
+            "version": "1.1",
+            "filename": "aruna_model_v1.1.joblib",
+            "status": "active",
+            "registered_at": "2026-11-23T01:03:53",
+            "dataset": "thesis_data_set_20261120_084409.xlsx",
+            "dataset_size": 332,
+            "notes": "Model training otomatis one-click."
         }
     ]
 }
